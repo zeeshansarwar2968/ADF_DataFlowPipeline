@@ -1,0 +1,9 @@
+{
+	"name": "ADFTutFactory009",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "7c3968b8-1fd8-44ff-b32a-3d261dca3ce3",
+		"tenantId": "77547edd-7f49-41ed-b186-81c549078e3f"
+	}
+}

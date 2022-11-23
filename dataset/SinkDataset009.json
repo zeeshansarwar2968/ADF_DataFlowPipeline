@@ -1,0 +1,23 @@
+{
+	"name": "SinkDataset009",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureStorage009",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat('Incremental-', pipeline().RunId, '.txt')",
+					"type": "Expression"
+				},
+				"container": "paramdemo-inp1"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

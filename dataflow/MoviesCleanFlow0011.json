@@ -1,0 +1,43 @@
+{
+	"name": "MoviesCleanFlow0011",
+	"properties": {
+		"type": "Flowlet",
+		"typeProperties": {
+			"sources": [],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "YearExtraction"
+				},
+				{
+					"name": "MoviesByYear"
+				},
+				{
+					"name": "Movieinput001"
+				},
+				{
+					"name": "MoviesCleaned"
+				},
+				{
+					"name": "MoviesByYearOut"
+				}
+			],
+			"scriptLines": [
+				"input(output(",
+				"          movieId as string,",
+				"          title as string,",
+				"          genres as string",
+				"     ),",
+				"     order: 0) ~> Movieinput001",
+				"Movieinput001 derive(Year = toInteger(trim(right(title,6), '()')),",
+				"          title = toString(left(title, length(title)-6)),",
+				"     partitionBy('hash', 1)) ~> YearExtraction",
+				"YearExtraction aggregate(groupBy(Year),",
+				"     MoviesCount = count(),",
+				"     partitionBy('hash', 1)) ~> MoviesByYear",
+				"YearExtraction output() ~> MoviesCleaned",
+				"MoviesByYear output() ~> MoviesByYearOut"
+			]
+		}
+	}
+}
